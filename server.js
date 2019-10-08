@@ -20,8 +20,10 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
 //no one can talk to me
-//app.use(helmet.noCache());
 app.use(helmet.contentSecurityPolicy({directives: {defaultSrc: ["'self'"], scriptSrc: ["'self'"]}}));
+app.use(helmet.noCache());
+//this is what is needed to make webpage work
+//app.use(helmet.contentSecurityPolicy({directives: {defaultSrc: ["'self'"], scriptSrc: ["'self'", "https://code.jquery.com/jquery-2.2.1.min.js","'unsafe-inline'"]}}));
 
 //Index page (static HTML)
 app.route('/')
